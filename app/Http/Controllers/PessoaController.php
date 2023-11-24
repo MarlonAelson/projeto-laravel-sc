@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Animal;
+use App\Models\Pessoa;
+use App\Http\Requests\StorePessoaRequest;
+use App\Http\Requests\UpdatePessoaRequest;
 
-class AnimalController extends Controller
+class PessoaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $animais = Animal::all();
-        return view('animal-listagem', ['animais' => $animais]);
+        //
     }
 
     /**
@@ -27,22 +27,15 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePessoaRequest $request)
     {
-        $animal = Animal::create(
-            [
-                'nome'=> 'Magali', 
-                'raca'=> 'Vira-Lata'
-            ]
-        );
-
-        dd($animal);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Pessoa $pessoa)
     {
         //
     }
@@ -50,7 +43,7 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pessoa $pessoa)
     {
         //
     }
@@ -58,7 +51,7 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePessoaRequest $request, Pessoa $pessoa)
     {
         //
     }
@@ -66,7 +59,7 @@ class AnimalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pessoa $pessoa)
     {
         //
     }
