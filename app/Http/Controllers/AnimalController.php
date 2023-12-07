@@ -21,7 +21,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('animal-cadastro');
     }
 
     /**
@@ -29,14 +29,9 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        $animal = Animal::create(
-            [
-                'nome'=> 'Magali', 
-                'raca'=> 'Vira-Lata'
-            ]
-        );
-
-        dd($animal);
+        $dados = $request->all();
+        $animal = Animal::create($dados);
+        return redirect()->route('animal.index');
     }
 
     /**
@@ -44,7 +39,9 @@ class AnimalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $animal = Animal::find($id);
+        dd($animal);
+        return view('animal-detalhes', ['animal' => $animal]);
     }
 
     /**
@@ -52,15 +49,19 @@ class AnimalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $animal = Animal::find($id);
+        return view('animal-edicao', ['animal' => $animal]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $animal = Animal::find($request->id);
+        $animal->update($request->all());
+
+        return redirect()->route('animal.index');
     }
 
     /**
@@ -68,6 +69,9 @@ class AnimalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+            $animal = Animal::find($id);
+            $animal->delete();
+            
+            return redirect()->route('animal.index');
     }
 }
