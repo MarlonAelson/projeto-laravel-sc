@@ -40,8 +40,13 @@ class AnimalController extends Controller
     public function show(string $id)
     {
         $animal = Animal::find($id);
-        dd($animal);
-        return view('animal-detalhes', ['animal' => $animal]);
+
+        if($animal){
+            return view('animal-detalhes', ['animal' => $animal]);
+        }else{
+            return redirect()->route('animal.index');
+        }
+        
     }
 
     /**

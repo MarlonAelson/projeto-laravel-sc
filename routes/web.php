@@ -7,40 +7,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/animal')->name('animal.')->group(function(){
+Route::name('animal.')->group(function(){
+    Route::get('/animal-listagem',       [AnimalController::class, 'index'])->name('index');
+
+    Route::post('/animal-gravar',        [AnimalController::class, 'store'])->name('store');
     
-    Route::get(
-        '/listagem', 
-        [AnimalController::class, 'index']
-    )->name('index');
-    
-    Route::get(
-        '/cadastro', 
-        [AnimalController::class, 'create']
-    )->name('create');
-    
-    Route::post(
-        '/salvar-cadastro', 
-        [AnimalController::class, 'store']
-    )->name('store');
-
-    Route::get(
-        '/editar/{id}', 
-        [AnimalController::class, 'edit']
-    )->name('edit');
-
-    Route::put(
-        '/alterar-cadastro/{id}', 
-        [AnimalController::class, 'update']
-    )->name('update');
-
-    Route::get(
-        '/detalhar/{id}', 
-        [AnimalController::class, 'show']
-    )->name('show');
-
-    Route::get(
-        '/deletar/{id}', 
-        [AnimalController::class, 'destroy']
-    )->name('destroy');
+    Route::get('/animal-detalhes/{id}',  [AnimalController::class, 'show'])->name('show');
 });
+
+
+  
