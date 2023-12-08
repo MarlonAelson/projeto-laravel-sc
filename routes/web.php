@@ -13,6 +13,8 @@ Route::name('animal.')->group(function(){
     Route::post('/animal-gravar',        [AnimalController::class, 'store'])->name('store');
     
     Route::get('/animal-detalhes/{id}',  [AnimalController::class, 'show'])->name('show');
+
+    Route::get('/animal-cadastro',       [AnimalController::class, 'create'])->name('create');
 });
 
 
