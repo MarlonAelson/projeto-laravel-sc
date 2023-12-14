@@ -24,8 +24,8 @@
                     
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-success"><i class="fas fa-save"></i> Salvar</button>
-                        <a href="{{ route('animal.index') }}" class="btn btn-outline-primary"><i class="fas fa-list-ol"></i>Listagem</a>
+                        <button type="submit" class="btn btn-outline-success">Salvar</button>
+                        <a href="{{ route('animal.index') }}" class="btn btn-outline-primary">Listagem</a>
                     </div>
                 </form>
         </div>

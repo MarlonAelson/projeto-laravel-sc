@@ -36,9 +36,9 @@
                         <td scope="row">{{$animal->id}}</td>
                         <td>{{$animal->nome}}</td>
                         <td>{{$animal->raca}}</td>
-                        <td><a href="{{ route('animal.show', $animal->id) }}">Detalhes</a></td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Deletar</a></td>
+                        <td><a href="{{ route('animal.show',    $animal->id) }}">Detalhes</a></td>
+                        <td><a href="{{ route('animal.edit',    $animal->id) }}">Editar</a></td>
+                        <td><a href="{{ route('animal.destroy', $animal->id) }}">Deletar</a></td>
                     </tr>
                     @endforeach
                 </table>
