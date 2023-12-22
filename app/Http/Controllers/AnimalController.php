@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use App\Http\Requests\StoreUpdateAnimalRequest;
+
 use App\Models\Animal;
 
 class AnimalController extends Controller
@@ -27,11 +31,15 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateAnimalRequest $request): RedirectResponse
     {
-        $dados = $request->all();
-        $animal = Animal::create($dados);
-        return redirect()->route('animal.index');
+        $validated = $request->validated();
+
+        if($validated){
+            $dados = $request->all();
+            $animal = Animal::create($dados);
+            return redirect()->route('animal.index');
+        }
     }
 
     /**
@@ -61,12 +69,18 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(StoreUpdateAnimalRequest $request)
     {
         $animal = Animal::find($request->id);
-        $animal->update($request->all());
 
-        return redirect()->route('animal.index');
+        $validated = $request->validated();
+
+        if($validated){
+
+            $animal->update($request->all());
+
+            return redirect()->route('animal.index');
+        }
     }
 
     /**
