@@ -296,6 +296,12 @@ return [
             'url'         => '/animal-listagem',
             'icon'        => 'fa fa-address-card',
         ],
+
+        [
+            'text'        => 'Usuários',
+            'url'         => '/usuario-listagem',
+            'icon'        => 'fa fa-address-card',
+        ],
        
         ['header' => 'Exemplo de Cabeçalho Divisor'],
         [

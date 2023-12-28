@@ -1,30 +1,53 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\{
+    AnimalController,
+    UserController
+};
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware('auth')->group(function(){
 
-Route::name('animal.')->group(function(){
-    Route::get('/animal-listagem',              [AnimalController::class, 'index'])->name('index');
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-    Route::post('/animal-gravar',               [AnimalController::class, 'store'])->name('store');
-    
-    Route::get('/animal-detalhes/{id}',         [AnimalController::class, 'show'])->name('show');
+    Route::name('animal.')->group(function(){
+        Route::get('/animal-listagem',              [AnimalController::class, 'index'])->name('index');
 
-    Route::get('/animal-cadastro',              [AnimalController::class, 'create'])->name('create');
+        Route::post('/animal-gravar',               [AnimalController::class, 'store'])->name('store');
+        
+        Route::get('/animal-detalhes/{id}',         [AnimalController::class, 'show'])->name('show');
 
-    Route::get('/animal-edicao/{id}',           [AnimalController::class, 'edit'])->name('edit');
+        Route::get('/animal-cadastro',              [AnimalController::class, 'create'])->name('create');
 
-    Route::put('/animal-gravar-edicao/{id}',    [AnimalController::class, 'update'])->name('update');
+        Route::get('/animal-edicao/{id}',           [AnimalController::class, 'edit'])->name('edit');
 
-    Route::get('/animal-deletar/{id}',          [AnimalController::class, 'destroy'])->name('destroy');
+        Route::put('/animal-gravar-edicao/{id}',    [AnimalController::class, 'update'])->name('update');
+
+        Route::get('/animal-deletar/{id}',          [AnimalController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name('usuario.')->group(function(){
+        Route::get('/usuario-listagem',              [UserController::class, 'index'])->name('index');
+
+        Route::post('/usuario-gravar',               [UserController::class, 'store'])->name('store');
+        
+        Route::get('/usuario-detalhes/{id}',         [UserController::class, 'show'])->name('show');
+
+        Route::get('/usuario-cadastro',              [UserController::class, 'create'])->name('create');
+
+        Route::get('/usuario-edicao/{id}',           [UserController::class, 'edit'])->name('edit');
+
+        Route::put('/usuario-gravar-edicao/{id}',    [UserController::class, 'update'])->name('update');
+
+        Route::get('/usuario-deletar/{id}',          [UserController::class, 'destroy'])->name('destroy');
+    });
+
 });
 
 
   
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
