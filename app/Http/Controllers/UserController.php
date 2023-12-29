@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateUsuarioRequest;
 
 use App\Models\User;
 
@@ -19,11 +20,15 @@ class UserController extends Controller
         return view('usuario-cadastro');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateUsuarioRequest $request)
     {
-        $dados = $request->all();
-        $usario = User::create($dados);
-        return redirect()->route('usuario.index');
+        $validated = $request->validated();
+        
+        if ($validated) {
+            $dados = $request->all();
+            $usario = User::create($dados);
+            return redirect()->route('usuario.index');
+        }
     }
 
     public function show(string $id)
@@ -44,7 +49,7 @@ class UserController extends Controller
         return view('usuario-edicao', ['usuario' => $usuario]);
     }
 
-    public function update(Request $request)
+    public function update(StoreUpdateUsuarioRequest $request)
     {
         $usuario = User::find($request->id);
         $usuario->update($request->all());

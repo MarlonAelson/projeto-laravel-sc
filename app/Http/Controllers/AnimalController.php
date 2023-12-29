@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\Http\Requests\StoreUpdateAnimalRequest;
 
 use App\Models\Animal;
@@ -31,7 +29,7 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUpdateAnimalRequest $request): RedirectResponse
+    public function store(StoreUpdateAnimalRequest $request)
     {
         $validated = $request->validated();
 
