@@ -16,16 +16,16 @@ class PermissoesSeeder extends Seeder
      */
     public function run(): void
     {
-        #permissoes de animais
-        Permission::create(['name' => 'animal_listar']);
-        Permission::create(['name' => 'animal_cadastrar']);
-        Permission::create(['name' => 'animal_editar']);
-        Permission::create(['name' => 'animal_deletar']);
-        
         #permissoes de usuarios
-        Permission::create(['name' => 'usuario_listar']);
-        Permission::create(['name' => 'usuario_cadastrar']);
-        Permission::create(['name' => 'usuario_editar']);
-        Permission::create(['name' => 'usuario_deletar']);
+        Permission::create(['id' => 1, 'name' => 'usuario_listar']);
+        Permission::create(['id' => 2, 'name' => 'usuario_cadastrar']);
+        Permission::create(['id' => 3, 'name' => 'usuario_editar']);
+        Permission::create(['id' => 4, 'name' => 'usuario_deletar']);
+
+        #permissoes de animais
+        Permission::create(['id' => 5, 'name' => 'animal_listar']);
+        Permission::create(['id' => 6, 'name' => 'animal_cadastrar']);
+        Permission::create(['id' => 7, 'name' => 'animal_editar']);
+        Permission::create(['id' => 8, 'name' => 'animal_deletar']);
     }
 }

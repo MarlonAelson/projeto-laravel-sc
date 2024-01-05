@@ -36,19 +36,26 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::name('usuario.')->group(function(){
-        Route::get('/usuario-listagem',              [UserController::class, 'index'])->name('index');
+        Route::get('/usuario-listagem',              [UserController::class, 'index'])
+        ->middleware(['permission:usuario_listar'])->name('index');
         
-        Route::get('/usuario-detalhes/{id}',         [UserController::class, 'show'])->name('show');
+        Route::get('/usuario-detalhes/{id}',         [UserController::class, 'show'])
+        ->middleware(['permission:usuario_listar'])->name('show');
 
-        Route::post('/usuario-gravar',               [UserController::class, 'store'])->name('store');
+        Route::post('/usuario-gravar',               [UserController::class, 'store'])
+        ->middleware(['permission:usuario_cadastrar'])->name('store');
 
-        Route::get('/usuario-cadastro',              [UserController::class, 'create'])->name('create');
+        Route::get('/usuario-cadastro',              [UserController::class, 'create'])
+        ->middleware(['permission:usuario_cadastrar'])->name('create');
 
-        Route::get('/usuario-edicao/{id}',           [UserController::class, 'edit'])->name('edit');
+        Route::get('/usuario-edicao/{id}',           [UserController::class, 'edit'])
+        ->middleware(['permission:usuario_editar'])->name('edit');
 
-        Route::put('/usuario-gravar-edicao/{id}',    [UserController::class, 'update'])->name('update');
+        Route::put('/usuario-gravar-edicao/{id}',    [UserController::class, 'update'])
+        ->middleware(['permission:usuario_editar'])->name('update');
 
-        Route::get('/usuario-deletar/{id}',          [UserController::class, 'destroy'])->name('destroy');
+        Route::get('/usuario-deletar/{id}',          [UserController::class, 'destroy'])
+        ->middleware(['permission:usuario_deletar'])->name('destroy');
     });
 
 });
